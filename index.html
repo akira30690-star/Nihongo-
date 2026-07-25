@@ -84,18 +84,24 @@ rt{
 
 <script>
 
-function generate(){
+function generate()
+{
 
     const input=document.getElementById("input").value;
 
-    const html=input.replace(
+    let html=input.replace(
         /([^\s|]+)\|([^\s]+)/g,
         '<ruby>$1<rt>$2</rt></ruby>'
     );
 
+    // 删除 ruby 后面的空格
+    html = html.replace(/<\/ruby>\s+/g, "</ruby>");
+
     document.getElementById("output").value=html;
 
     document.getElementById("preview").innerHTML=html.replace(/\n/g,"<br>");
+
+}
 
 }
 
